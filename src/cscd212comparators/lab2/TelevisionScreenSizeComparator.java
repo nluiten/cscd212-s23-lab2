@@ -6,7 +6,11 @@ import java.util.Comparator;
 
 public class TelevisionScreenSizeComparator implements Comparator<Television> {
     @Override
-    public int compare(Television o1, Television o2) {
-        return 0;
+    public int compare(Television tv1, Television tv2) {
+        if(tv1 == null || tv2 == null) {
+            throw new IllegalArgumentException("A tv is null");
+        }
+
+        return Integer.compare(tv1.getScreenSize(), tv2.getScreenSize());
     }
 }

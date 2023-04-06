@@ -6,14 +6,14 @@ import java.util.Comparator;
 
 public class TelevisionResolutionMakeDescendingComparator implements Comparator<Television> {
     @Override
-    public int compare(Television o1, Television o2) {
-        if(o1 == null || o2 == null) {
+    public int compare(Television tv1, Television tv2) {
+        if(tv1 == null || tv2 == null) {
             throw new IllegalArgumentException("A tv is null");
         }
 
-        if(o1.getResolution() == o2.getResolution()) {
-            return o1.getMake().compareTo(o2.getMake());
+        if(tv1.getResolution() == tv2.getResolution()) {
+            return tv1.getMake().compareTo(tv2.getMake());
         }
-        return Integer.compare(o1.getResolution(), o2.getResolution());
+        return Integer.compare(tv1.getResolution(), tv2.getResolution());
     }
 }
