@@ -12,7 +12,7 @@ public class Television implements Comparable<Television>{
 
     public Television(final String make, final String model, final boolean smart, final int screenSize, final int resolution) {
         if(make == null || make.isEmpty() || model == null || model.isEmpty() || screenSize < 32 || resolution < 720) {
-            throw new IllegalArgumentException("Television is not valid");
+            throw new IllegalArgumentException("Invalid parameter in constructor");
         }
 
         this.make = make;
@@ -28,11 +28,6 @@ public class Television implements Comparable<Television>{
             this.fourK = false;
         }
     }
-
-    /*public Television(final String model, final boolean smart, final int screenSize, final int resolution, final String make, boolean fourK) {
-
-        new Television(make, model, smart, screenSize, resolution);
-    }*/
 
     public String getMake() {
         return make;
@@ -56,9 +51,11 @@ public class Television implements Comparable<Television>{
         String resolution = Integer.toString(getResolution()) + " ";
         if(this.smart == true) {
             smart = "smart ";
+        }
+        if(this.getResolution() == 2160) {
             resolution = "4K ";
         }
-        return getMake() + "-" + getModel() + ", " + getScreenSize() + "inch " + smart + "tv with " + resolution + " resolution";
+        return getMake() + "-" + getModel() + ", " + getScreenSize() + " inch " + smart + "tv with " + resolution + "resolution";
     }
 
     @Override
@@ -71,18 +68,18 @@ public class Television implements Comparable<Television>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(fourK, getMake(), getModel(), getResolution(), getScreenSize(), smart);
+        return Boolean.hashCode(fourK) + make.hashCode() + model.hashCode() + resolution + screenSize + Boolean.hashCode(smart) - 36;
     }
 
     @Override
     public int compareTo(Television o) {
         if(o == null) {
-            throw new IllegalArgumentException("Other tv is null");
+            throw new IllegalArgumentException("null parameter in the compareTo method");
         }
 
         if(this.getMake().compareTo(o.getMake()) == 0) {
             if(this.getModel().compareTo(o.getModel()) == 0) {
-                return Integer.compare(this.getScreenSize(), o.getScreenSize());
+                return this.getScreenSize() - o.getScreenSize();
             }
             return this.getModel().compareTo(o.getModel());
         }

@@ -8,12 +8,12 @@ public class TelevisionResolutionMakeDescendingComparator implements Comparator<
     @Override
     public int compare(Television tv1, Television tv2) {
         if(tv1 == null || tv2 == null) {
-            throw new IllegalArgumentException("A tv is null");
+            throw new IllegalArgumentException("null parameter in TelevisionResolutionMakeDescendingComparator");
         }
 
         if(tv1.getResolution() == tv2.getResolution()) {
-            return tv1.getMake().compareTo(tv2.getMake());
+            return tv2.getMake().compareTo(tv1.getMake());
         }
-        return Integer.compare(tv1.getResolution(), tv2.getResolution());
+        return tv2.getResolution() - tv1.getResolution();
     }
 }

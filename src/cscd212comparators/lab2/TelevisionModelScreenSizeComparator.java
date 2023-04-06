@@ -8,11 +8,11 @@ public class TelevisionModelScreenSizeComparator implements Comparator<Televisio
     @Override
     public int compare(Television tv1, Television tv2) {
         if(tv1 == null || tv2 == null) {
-            throw new IllegalArgumentException("A tv is null");
+            throw new IllegalArgumentException("null parameter in TelevisionModelScreenSizeComparator");
         }
 
         if(tv1.getModel().compareTo(tv2.getModel()) == 0) {
-            return Integer.compare(tv1.getScreenSize(), tv2.getScreenSize());
+            return tv1.getScreenSize() - tv2.getScreenSize();
         }
         return tv1.getModel().compareTo(tv2.getModel());
     }
