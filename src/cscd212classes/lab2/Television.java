@@ -1,4 +1,4 @@
-package cscd212classes;
+package cscd212classes.lab2;
 
 import java.util.Objects;
 
