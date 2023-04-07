@@ -20,13 +20,11 @@ public class Television implements Comparable<Television>{
         this.resolution = resolution;
         this.screenSize = screenSize;
         this.smart = smart;
+        this.fourK = this.resolution == 2160;
+    }
 
-        if(this.resolution == 2160) {
-            this.fourK = true;
-        }
-        else {
-            this.fourK = false;
-        }
+    public Television(final String model, final boolean smart, final int screenSize, final int resolution, final String make) {
+        this(make, model, smart, screenSize, resolution);
     }
 
     public String getMake() {
@@ -63,12 +61,13 @@ public class Television implements Comparable<Television>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Television that = (Television) o;
-        return fourK == that.fourK && getResolution() == that.getResolution() && getScreenSize() == that.getScreenSize() && smart == that.smart && Objects.equals(getMake(), that.getMake()) && Objects.equals(getModel(), that.getModel());
+        return fourK == that.fourK && getResolution() == that.getResolution() && getScreenSize() == that.getScreenSize()
+                && smart == that.smart && Objects.equals(getMake(), that.getMake()) && Objects.equals(getModel(), that.getModel());
     }
 
     @Override
     public int hashCode() {
-        return Boolean.hashCode(fourK) + make.hashCode() + model.hashCode() + resolution + screenSize + Boolean.hashCode(smart) - 36;
+        return Boolean.hashCode(fourK) + make.hashCode() + model.hashCode() + resolution + Boolean.hashCode(smart);
     }
 
     @Override
